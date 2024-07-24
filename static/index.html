@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GESTURE TECH!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif; 
+            background: linear-gradient(to right, #5fb2aa, #c0caca); /* Nice gradient background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: rgba(234, 237, 234, 0.5); /* Semi-transparent white */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin-bottom: 20px;
+            color: #f84848;
+        }
+        h5{
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            margin-bottom: auto;
+            color: #312f2f;
+        }
+
+        .button-container {
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: #1c1b1b;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #85c98b;
+            transform: scale(1.45); /* Slightly increase the size on hover */
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #525050;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>GESTURE TECH</h1>
+        <h5>Click on any button below</h5>
+        <div class="button-container">
+            <button class="btn" id="mouse-btn">Virtual Mouse</button>
+            <button class="btn" id="volume-btn">Volume Control</button>
+            <button class="btn" id="texture-btn">Texture Vision</button>
+        </div>
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        document.getElementById('mouse-btn').addEventListener('click', function() {
+            fetch('/mouse', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('result').innerText = JSON.stringify(data);
+                });
+        });
+
+        document.getElementById('volume-btn').addEventListener('click', function() {
+            fetch('/volume', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('result').innerText = JSON.stringify(data);
+                });
+        });
+
+        document.getElementById('texture-btn').addEventListener('click', function() {
+            fetch('/texture', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('result').innerText = JSON.stringify(data);
+                });
+        });
+    </script>
+</body>
+</html>
